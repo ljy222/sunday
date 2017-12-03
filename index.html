@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<body>
+    <div class="wrap">
+    </div>
+    <script src="./jquery.js"></script>
+    <script>
+        $.ajax({
+            url:"http://localhost:8808/getdata",
+            success:function(data){
+                console.log(data)
+                var str='';
+                var date = JSON.parse(data);
+                date.one.forEach(function(file){
+                    str+=`<dl><dt><img src="${file.img}" alt=""></dt><dd><h3>${file.hh}</h3><h4>${file.tt}</h4></dd></dl>`
+                })
+                $(".wrap").html(str);
+            }
+        })
+    </script>
+</body>
+</html>
